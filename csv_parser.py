@@ -26,7 +26,6 @@ Does some word preprocessing during the parsing.
 
 try:
     full_dataset = io.open("twitter-sentiment-dataset/sentiment-dataset.csv", mode="r", encoding="utf-8")
-    #full_dataset = open("twitter-sentiment-dataset/sentiment-dataset.csv", "r")
     pos_dataset = codecs.open("twitter-sentiment-dataset/tw-data.pos", mode="w", encoding="utf-8")
     neg_dataset = codecs.open("twitter-sentiment-dataset/tw-data.neg", mode="w", encoding="utf-8")
 except IOError:

@@ -11,7 +11,7 @@ from tqdm import tqdm
 def log(*string, **kwargs):
     output = ' '.join(string)
     if kwargs.pop('verbose', True):
-        print output
+        print (output)
     LOG_FILE.write(''.join(['\n', output]))
 
 
@@ -135,7 +135,7 @@ else:
     CHECKPOINT_FILE_PATH = os.path.abspath(os.path.join(RUN_DIR, 'ckpt.ckpt'))
 os.mkdir(RUN_DIR)
 SUMMARY_DIR = os.path.join(RUN_DIR, 'summaries')
-LOG_FILE = open(LOG_FILE_PATH, 'a', 0)
+LOG_FILE = open(LOG_FILE_PATH, 'a')
 
 
 log('======================= START! ========================')
@@ -170,8 +170,8 @@ else:
 
 # Log run data
 log('\nFlags:')
-for attr, value in sorted(FLAGS.__flags.iteritems()):
-    log('\t%s = %s' % (attr, value._value))
+#for attr, value in sorted(FLAGS.__flags.iteritems()):
+#    log('\t%s = %s' % (attr, value._value))
 log('\nDataset:')
 log('\tTrain set size = %d\n'
     '\tTest set size = %d\n'
@@ -234,7 +234,7 @@ with tf.device(device):
         pooled_outputs.append(pooled)
 
     # Combine the pooled feature tensors
-    num_filters_total = FLAGS.num_filters * len(filter_sizes)
+    num_filters_total = FLAGS.num_filters * len(list(filter_sizes))
     h_pool = tf.concat(pooled_outputs, 3)
     h_pool_flat = tf.reshape(h_pool, [-1, num_filters_total])
 
